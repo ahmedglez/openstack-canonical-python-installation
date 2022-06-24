@@ -1,5 +1,5 @@
 import subprocess;
 
 
-process = subprocess.run(["echo", "prueba"]);
+process = subprocess.run(["echo", "perro"]);
 print(process);
