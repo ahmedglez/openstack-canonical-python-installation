@@ -2,7 +2,7 @@ import subprocess
 
 """ 1. Actualizar Ubuntu """
 subprocess.run(["echo","Actualizando Ubuntu ..."]);
-subprocess.run(["sudo", "apt-get", "update"]);
+output = subprocess.run(["sudo", "apt-get", "update"]);
 
 """ 3. Instalar Git """
 subprocess.run(["echo","Instalando Git ..."])
