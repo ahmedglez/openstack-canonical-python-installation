@@ -1,8 +1,6 @@
 import os
 
-def microstack_init():
-    print("")
-    print("")    
+def microstack_init():   
     print("A continuacion se procedera a inicializar Microstack en sus sistema operativo");
     print('Desea continuar?')
     print('S-Si    -   N-No')
