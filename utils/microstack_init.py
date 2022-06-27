@@ -8,11 +8,20 @@ def microstack_init():
     if(answer == 'S'):
         print("Inicializando Microsttack ...")
         output = os.system(" sudo microstack init --auto --control ")
-    if(output != 0):
+    elif(output != 0):
         print("")
         print("")
         print("Ha ocurrido un error en la instalacion")
         print(
             "Por favor compruebe su conexion y los permisos de usuario e intentelo de nuevo")
+        print("")       
+        answer3=0;
+        while(answer3 !='S' and answer3!='N'):
+             print("Desea reintentar este paso nuevamente?")
+             answer3 = input().capitalize()
+             if(answer3 == 'S'):
+                microstack_init();
+             elif(answer3 == 'N'):
+               return 0;
     elif(output == 1):
         print("Microstack inicializado con exito")
