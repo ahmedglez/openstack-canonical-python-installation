@@ -1,17 +1,20 @@
 import os
 
 def microstack_init():   
-    print("A continuacion se procedera a inicializar Microstack en su nodo controlador");
+    print("A continuacion se procedera a inicializar Microstack en su nodo de computo");
     print('Desea continuar?')
     print('S-Si    -   N-No')
     answer = input().capitalize()
     if(answer == 'S'):
         print("Inicializando Microstack ...")
-        output = os.system(" sudo microstack init --auto --control ")
+        print("Escriba su clave de conexion")
+        clave = input()
+        print('Inicializacndo Openstack en su nodo computo')
+        output = os.system(" sudo microstack init --auto --compute --join" + clave)
     elif(output != 0):
         print("")
         print("")
-        print("Ha ocurrido un error en la instalacion")
+        print("Ha ocurrido un error en la inicializacion")
         print(
             "Por favor compruebe su conexion y los permisos de usuario e intentelo de nuevo")
         print("")       

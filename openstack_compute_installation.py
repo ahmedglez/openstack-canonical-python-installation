@@ -1,12 +1,7 @@
-import os
-from sqlite3 import Time
-import sys
-import time
 from utils.install_function import installation
 from utils.update_system import update_system
 from utils.microstack_init import microstack_init
-
-
+from utils.addCompute import addCompute
 
 print('')
 print('')
@@ -18,7 +13,6 @@ print('Asegurese primero de tener los permisos de sudo ')
 print('************************************************')
 print('')
 print('')
-
 
 """ ACTUALIZACION DE PAQUETES DE UBUNTU """
 print('***Paso#1 - Actualizacion de los paquetes del sistema operativo***')
@@ -44,9 +38,7 @@ print("")
 
 
 """ INICIALIZAR MICROSTACK """
-print('***Paso#5 - Inicializacion de nodo control de Openstack*** ')
-microstack_init()
+print('***Paso#5 - Inicializacion de nodo computo de Openstack*** ')
+microstack_init_compute();
 print("")
-
-
 
