@@ -1,42 +1,38 @@
-import subprocess
-
-""" 1. Actualizar Ubuntu """
-subprocess.run(["echo","Actualizando Ubuntu ..."]);
-output = subprocess.run(["sudo", "apt-get", "update"]);
-
-""" 3. Instalar Git """
-subprocess.run(["echo","Instalando Git ..."])
-subprocess.run(["sudo","apt-get", "install", "git"]);
-
-""" 4. Instalar snap """
-subprocess.run(["echo","Instalando Snap ..."])
-subprocess.run(["sudo","apt", "update"]);
-subprocess.run(["sudo","apt-get", "install", "snap"]);
-
-""" 5. Probar snap """
-subprocess.run(["echo","Comprobando que snap funcione correctamente ..."])
-subprocess.run(["sudo","snap", "install", "hello-world"]);
-subprocess.run(["hello-world"]);
-
-""" 6. Instalar microstack """
-subprocess.run(["echo","Instalando Microstack ..."])
-subprocess.run(["sudo","snap", "install", "microstack", "--beta"]);
-
-""" 7.  Verificar que se instalo correctamente """
-subprocess.run(["echo","Comprobando que Microstack se instaló correctamente ..."])
-subprocess.run(["snap","list","microstack"]);
-
-""" 8.  Inicializar microstack """
-subprocess.run(["echo","Inicializando Microstack ..."])
-subprocess.run(["sudo", "microstack", "init", "--auto", "--control"]);
+import os
+from sqlite3 import Time
+import sys
+import time
+from utils.install_function import installation
+from utils.update_system import update_system
+from utils.microstack_init import microstack_init
 
 
 
+print('')
+print('')
+print('         SCRIPT AUTOMATIZADO PARA LA INSTALACION DE OPENSTACK EN UBUNTU')
+print('')
+print('')
+print('************************************************')
+print('Asegurese primero de tener los permisos de sudo ')
+print('************************************************')
+print('')
+print('')
 
 
+""" ACTUALIZACION DE PAQUETES DE UBUNTU """
+update_system();
 
+""" INSTALACION DE GIT """
+installation('Git', 'sudo apt-get install git')
 
+""" INSTALACION DE SNAP """
+installation('Snap', 'sudo apt install snapd');
 
+""" INSTALACION DE MICROSTACK """
+installation('Microstack', 'sudo snap install microstack --beta')
 
+""" INICIALIZAR MICROSTACK """
+microstack_init()
 
 
