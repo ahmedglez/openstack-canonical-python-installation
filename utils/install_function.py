@@ -1,5 +1,5 @@
 import subprocess
-import os;
+import os
 
 """ import subprocess
 try:
@@ -13,22 +13,17 @@ else:
 
 
 def installation(name, command):
-   
+
     print("A continuacion se procedera a instalar " +
           name + " en sus sistema operativo")
     print('Desea continuar?')
     print('S-Si    -   N-No')
     answer = input().capitalize()
 
-
     if(answer == 'S'):
         """ En caso de elegir Si """
-        if(name=='Microstack'):
-            print('Eliminando procesos de snap en ejecucion')
-            os.system('sudo snap abort --last=install')
-            print('Procesos de snap eliminados')
-            print("")
-        print("Instalando " +name+ " en su sistema operativo ...")       
+
+        print("Instalando " + name + " en su sistema operativo ...")
 
         try:
             output = subprocess.run(
@@ -44,22 +39,33 @@ def installation(name, command):
             while(answer != 'S' and answer != 'N'):
                 answer = input().capitalize()
                 if(answer == 'S'):
+                    if(name == 'Microstack'):
+                        print('Eliminando procesos de snap en ejecucion')
+                        os.system('sudo snap abort --last=install')
+                        print("")
+                        print("")
+                        print("")
+                        print("")
+                        print("")
+                        print("")
+                        print("")
+
                     installation(name, command)
-                elif(answer=='N'):
+                elif(answer == 'N'):
                     break
                 else:
                     print('Opcion no valida')
 
-        except subprocess.TimeoutExpired as exc:                         
-            print("La ejecucion de este comando ha demorado demasiado tiempo")
+        except subprocess.TimeoutExpired as exc:
+            print("La ejecucion de este comando está demorado demasiado tiempo")
             print("Desea continuar con la ejecucion?")
             print('S-Si    -   N-No')
             answer = 0
             while(answer != 'S' and answer != 'N'):
                 answer = input().capitalize()
                 if(answer == 'S'):
-                    print("Descargando Openstack")
-                elif(answer=='N'):
+                    print("Instalando "+name)
+                elif(answer == 'N'):
                     break
                 else:
                     print('Opcion no valida')
@@ -70,23 +76,19 @@ def installation(name, command):
             print("")
             print("")
 
-        
-
     elif(answer == 'N'):
         """ En caso de No """
-        answer2 = 0;
+        answer2 = 0
         while(answer2 != 'S' and answer2 != 'N'):
             print("Desea omitir este paso?")
             print("S-Si        -       N-No")
-            answer2 = input().capitalize();
+            answer2 = input().capitalize()
             if(answer2 == 'S'):
                 break
             elif(answer2 == 'N'):
-                installation(name,command)
+                installation(name, command)
 
-                
     else:
         """ Ninguna de las opciones """
         print('Opcion no valida')
-        installation(name, command);
-    
+        installation(name, command)

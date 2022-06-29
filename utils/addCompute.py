@@ -34,16 +34,16 @@ def addCompute():
                     break
                 else:
                     print('Opcion no valida')
-        except subprocess.TimeoutExpired as exc:             
-            print("La ejecucion de este comando ha demorado demasiado tiempo")
-            print("Desea reintentar este paso nuevamente?")
+        except subprocess.TimeoutExpired as exc:
+            print("La ejecucion de este comando está demorado demasiado tiempo")
+            print("Desea continuar con la ejecucion?")
             print('S-Si    -   N-No')
             answer = 0
             while(answer != 'S' and answer != 'N'):
                 answer = input().capitalize()
                 if(answer == 'S'):
-                    addCompute()
-                elif(answer=='N'):
+                    print("Añadiendo nodo... ")
+                elif(answer == 'N'):
                     break
                 else:
                     print('Opcion no valida')

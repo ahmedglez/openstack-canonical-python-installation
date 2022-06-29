@@ -32,20 +32,14 @@ def microstack_init():
                 else:
                     print('Opcion no valida')
         except subprocess.TimeoutExpired as exc:
-            output2 = subprocess.run(
-                'snap change')
-            print("")
-            print("SNAP CHANGE")
-
-            print(output2)
-            print("La ejecucion de este comando ha demorado demasiado tiempo")
-            print("Desea reintentar este paso nuevamente?")
+            print("La ejecucion de este comando está demorado demasiado tiempo")
+            print("Desea continuar con la ejecucion?")
             print('S-Si    -   N-No')
             answer = 0
             while(answer != 'S' and answer != 'N'):
                 answer = input().capitalize()
                 if(answer == 'S'):
-                    microstack_init()
+                    print("Inicilizando nodo controlador... ")
                 elif(answer == 'N'):
                     break
                 else:
