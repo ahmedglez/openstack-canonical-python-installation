@@ -1,13 +1,13 @@
 
 
-import os
+import subprocess
 import time
 
 
 def update_system():
     print('A continuacion se procedera a actualizar los paquetes del sistema ')
     print('Desea continuar?')
-    confirm1();
+    confirm1()
 
 
 def confirm1():
@@ -17,35 +17,37 @@ def confirm1():
         answer = input().capitalize()
         if(answer == 'S'):
             print("Actualizando paquetes del sistema...")
-            output = os.system('sudo apt-get update')
-            if(output != 0):
+            try:
+                command = 'sudo apt-get update '
+                output = subprocess.check_output(
+                    command, stderr=subprocess.STDOUT, shell=True, timeout=3,
+                    universal_newlines=True)
+            except subprocess.CalledProcessError as exc:
+                """ En caso de error """
+                print("Error, Status : FAIL", exc.returncode, exc.output)
                 print("")
-                print("")
-                print(
-                    "Ha ocurrido un error intentando actualizar los paquetes del sistema")
-                print("Por favor compruebe su conexion y los permisos de usuario")
-                print(" ")
-                print(" ")
-                print("Desea reintentar desde el paso anterior?")
+                print("Desea reintentar este paso nuevamente?")
                 print('S-Si    -   N-No')
-                answer = input().capitalize()
-                if(answer == 'S'):
-                    confirm1()
-                if(answer == 'N'):
-                    break
-            elif(output == 1):
-                 print("Paquetes actualizados con exito!!")
+                answer = 0
+                while(answer != 'S' and answer != 'N'):
+                    answer = input().capitalize()
+                    if(answer == 'S'):
+                        update_system()
+                    elif(answer == 'N'):
+                        break
+                    else:
+                        print('Opcion no valida')
+
         elif(answer == 'N'):
             answer2 = 0
             while(answer2 != 'S' and answer2 != 'N'):
                 print("Desea omitir este paso?")
                 print("S-Si        -       N-No")
-                answer2 = input().capitalize();
+                answer2 = input().capitalize()
                 if(answer2 == 'S'):
                     break
                 elif(answer2 == 'N'):
-                     update_system()
+                    update_system()
 
         else:
             print('Opcion no valida')
-       

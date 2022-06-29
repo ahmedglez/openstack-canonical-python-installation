@@ -48,6 +48,7 @@ print("")
 
 """ AÑADIR NUEVO NODO  """
 print('***Paso#6 - Añadir nueva computadora como nodo a la nube*** ')
+addCompute();
 
 
 

@@ -1,4 +1,14 @@
-import os
+import subprocess
+
+""" import subprocess
+try:
+    output = subprocess.check_output(
+        cmnd, stderr=subprocess.STDOUT, shell=True, timeout=3,
+        universal_newlines=True)
+except subprocess.CalledProcessError as exc:
+    print("Status : FAIL", exc.returncode, exc.output)
+else:
+    print("Output: \n{}\n".format(output)) """
 
 
 def installation(name, command):
@@ -8,19 +18,34 @@ def installation(name, command):
     print('Desea continuar?')
     print('S-Si    -   N-No')
     answer = input().capitalize()
+
+
     if(answer == 'S'):
+        """ En caso de elegir Si """
         print("Instalando " +name+ " en su sistema operativo ...")
-        output = os.system(command)
-        if(output != 0):
+        try:
+            output = subprocess.check_output(
+                'sudo microstack add-compute', stderr=subprocess.STDOUT, shell=True, timeout=3,
+                universal_newlines=True)
+        except subprocess.CalledProcessError as exc:
+            """ En caso de error """
+            print("Error, Status : FAIL", exc.returncode, exc.output)
             print("")
-            print("")
-            print("Ha ocurrido un error en la instalacion")
-            print(
-                "Por favor compruebe su conexion y los permisos de usuario e intentelo de nuevo")
-        elif(output == 0):
-            print("Instalacion concluida con exito")
+            print("Desea reintentar este paso nuevamente?")
+            print('S-Si    -   N-No')
+            answer = 0
+            while(answer != 'S' and answer != 'N'):
+                answer = input().capitalize()
+                if(answer == 'S'):
+                    installation(name, command)
+                elif(answer=='N'):
+                    break
+                else:
+                    print('Opcion no valida')
+        
 
     elif(answer == 'N'):
+        """ En caso de No """
         answer2 = 0;
         while(answer2 != 'S' and answer2 != 'N'):
             print("Desea omitir este paso?")
@@ -30,6 +55,10 @@ def installation(name, command):
                 break
             elif(answer2 == 'N'):
                 installation(name,command)
+
+                
     else:
+        """ Ninguna de las opciones """
         print('Opcion no valida')
+        installation(name, command);
     
