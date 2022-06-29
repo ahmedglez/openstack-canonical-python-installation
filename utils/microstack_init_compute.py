@@ -1,6 +1,6 @@
 import subprocess;
 
-def microstack_init():   
+def microstack_init_compute():   
     print("A continuacion se procedera a inicializar Microstack en su nodo de computo");
     print('Desea continuar?')
     print('S-Si    -   N-No')

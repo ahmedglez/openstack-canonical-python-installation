@@ -1,4 +1,5 @@
 import subprocess
+import os;
 
 """ import subprocess
 try:
@@ -23,6 +24,12 @@ def installation(name, command):
     if(answer == 'S'):
         """ En caso de elegir Si """
         print("Instalando " +name+ " en su sistema operativo ...")
+        if(name=='Microstack'):
+            print('Eliminando procesos de snap en ejecucion')
+            os.system('sudo snap abort --last=install')
+            print('Procesos de snap eliminados')
+            print("")
+
         try:
             output = subprocess.check_output(
                 command, stderr=subprocess.STDOUT, shell=True, timeout=3,

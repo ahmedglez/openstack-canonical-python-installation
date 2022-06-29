@@ -2,6 +2,7 @@ from utils.install_function import installation
 from utils.update_system import update_system
 from utils.microstack_init import microstack_init
 from utils.addCompute import addCompute
+from utils.microstack_init_compute import microstack_init
 
 print('')
 print('')
