@@ -1,11 +1,11 @@
 import subprocess
 
-def microstack_init():   
-    print("A continuacion se procedera a inicializar Microstack en su nodo controlador");
+
+def microstack_init():
+    print("A continuacion se procedera a inicializar Microstack en su nodo controlador")
     print('Desea continuar?')
     print('S-Si    -   N-No')
     answer = input().capitalize()
-
 
     if(answer == 'S'):
         print("Inicializando Microstack en su nodo controlador ...")
@@ -25,14 +25,13 @@ def microstack_init():
                 answer = input().capitalize()
                 if(answer == 'S'):
                     microstack_init()
-                elif(answer=='N'):
+                elif(answer == 'N'):
                     break
                 else:
                     print('Opcion no valida')
-        except subprocess.TimeoutExpired as exc: 
-            output2 = subprocess.check_output(
-                'snap change', stderr=subprocess.STDOUT, shell=True, timeout=3,
-                universal_newlines=True)
+        except subprocess.TimeoutExpired as exc:
+            output2 = subprocess.run(
+                'snap change')
             print("")
             print("SNAP CHANGE")
 
@@ -45,32 +44,24 @@ def microstack_init():
                 answer = input().capitalize()
                 if(answer == 'S'):
                     microstack_init()
-                elif(answer=='N'):
+                elif(answer == 'N'):
                     break
                 else:
                     print('Opcion no valida')
 
-
-
-
-    
     elif(answer == 'N'):
         """ En caso de No """
-        answer2 = 0;
+        answer2 = 0
         while(answer2 != 'S' and answer2 != 'N'):
             print("Desea omitir este paso?")
             print("S-Si        -       N-No")
-            answer2 = input().capitalize();
+            answer2 = input().capitalize()
             if(answer2 == 'S'):
                 break
             elif(answer2 == 'N'):
                 microstack_init()
 
-                
     else:
         """ Ninguna de las opciones """
         print('Opcion no valida')
         microstack_init()
-
-
-
