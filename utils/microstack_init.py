@@ -1,7 +1,8 @@
 import subprocess
+import os;
 
 
-def microstack_init():
+def microstack_init():    
     print("A continuacion se procedera a inicializar Microstack en su nodo controlador")
     print('Desea continuar?')
     print('S-Si    -   N-No')
@@ -9,6 +10,7 @@ def microstack_init():
 
     if(answer == 'S'):
         print("Inicializando Microstack en su nodo controlador ...")
+        os.system('sudo snap abort --last=install')
         try:
             command = 'sudo microstack init --auto --control '
             output = subprocess.check_output(
