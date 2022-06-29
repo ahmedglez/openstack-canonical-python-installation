@@ -59,7 +59,6 @@ def installation(name, command):
                 answer = input().capitalize()
                 if(answer == 'S'):
                     print("Descargando Openstack")
-                    print(output)
                 elif(answer=='N'):
                     break
                 else:
