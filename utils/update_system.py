@@ -37,6 +37,20 @@ def confirm1():
                         break
                     else:
                         print('Opcion no valida. Intentelo de nuevo')
+            except subprocess.TimeoutExpired as exc:             
+                print("Error, Status : FAIL", exc.returncode, exc.output)
+                print("La ejecucion de este comando ha demorado demasiado tiempo")
+                print("Desea reintentar este paso nuevamente?")
+                print('S-Si    -   N-No')
+                answer = 0
+                while(answer != 'S' and answer != 'N'):
+                    answer = input().capitalize()
+                    if(answer == 'S'):
+                        update_system()
+                    elif(answer=='N'):
+                        break
+                    else:
+                        print('Opcion no valida')
 
         elif(answer == 'N'):
             answer2 = 0
