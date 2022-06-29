@@ -36,7 +36,7 @@ def confirm1():
                     elif(answer == 'N'):
                         break
                     else:
-                        print('Opcion no valida')
+                        print('Opcion no valida. Intentelo de nuevo')
 
         elif(answer == 'N'):
             answer2 = 0

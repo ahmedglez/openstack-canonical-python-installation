@@ -25,7 +25,7 @@ def installation(name, command):
         print("Instalando " +name+ " en su sistema operativo ...")
         try:
             output = subprocess.check_output(
-                'sudo microstack add-compute', stderr=subprocess.STDOUT, shell=True, timeout=3,
+                command, stderr=subprocess.STDOUT, shell=True, timeout=3,
                 universal_newlines=True)
         except subprocess.CalledProcessError as exc:
             """ En caso de error """
@@ -42,6 +42,28 @@ def installation(name, command):
                     break
                 else:
                     print('Opcion no valida')
+
+        except subprocess.TimeoutExpired as exc:             
+            print("Error, Status : FAIL", exc.returncode, exc.output)
+            print("La ejecucion de este comando ha demorado demasiado tiempo")
+            print("Desea reintentar este paso nuevamente?")
+            print('S-Si    -   N-No')
+            answer = 0
+            while(answer != 'S' and answer != 'N'):
+                answer = input().capitalize()
+                if(answer == 'S'):
+                    installation(name, command)
+                elif(answer=='N'):
+                    break
+                else:
+                    print('Opcion no valida')
+
+        else:
+            print("")
+            print(name, " ha sido correctamente instalado en su equipo")
+            print("")
+            print("")
+
         
 
     elif(answer == 'N'):
