@@ -27,7 +27,7 @@ def microstack_init_compute():
             while(answer != 'S' and answer != 'N'):
                 answer = input().capitalize()
                 if(answer == 'S'):
-                    microstack_init()
+                    microstack_init_compute()
                 elif(answer=='N'):
                     break
                 else:
@@ -40,7 +40,7 @@ def microstack_init_compute():
             while(answer != 'S' and answer != 'N'):
                 answer = input().capitalize()
                 if(answer == 'S'):
-                    microstack_init()
+                    microstack_init_compute()
                 elif(answer=='N'):
                     break
                 else:

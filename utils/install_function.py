@@ -23,15 +23,15 @@ def installation(name, command):
 
     if(answer == 'S'):
         """ En caso de elegir Si """
-        print("Instalando " +name+ " en su sistema operativo ...")
         if(name=='Microstack'):
             print('Eliminando procesos de snap en ejecucion')
             os.system('sudo snap abort --last=install')
             print('Procesos de snap eliminados')
             print("")
+        print("Instalando " +name+ " en su sistema operativo ...")       
 
         try:
-            output = subprocess.check_output(
+            output = subprocess.run(
                 command, stderr=subprocess.STDOUT, shell=True, timeout=3,
                 universal_newlines=True)
         except subprocess.CalledProcessError as exc:
@@ -50,15 +50,16 @@ def installation(name, command):
                 else:
                     print('Opcion no valida')
 
-        except subprocess.TimeoutExpired as exc:             
+        except subprocess.TimeoutExpired as exc:                         
             print("La ejecucion de este comando ha demorado demasiado tiempo")
-            print("Desea reintentar este paso nuevamente?")
+            print("Desea continuar con la ejecucion?")
             print('S-Si    -   N-No')
             answer = 0
             while(answer != 'S' and answer != 'N'):
                 answer = input().capitalize()
                 if(answer == 'S'):
-                    installation(name, command)
+                    print("Descargando Openstack")
+                    print(output)
                 elif(answer=='N'):
                     break
                 else:
