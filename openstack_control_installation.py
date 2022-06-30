@@ -2,9 +2,10 @@ from utils.install_function import installation
 from utils.update_system import update_system
 from utils.microstack_init import microstack_init
 from utils.addCompute import addCompute
+import os
 
 
-
+os.system('clear')
 print('')
 print('')
 print('         SCRIPT AUTOMATIZADO PARA LA INSTALACION DE OPENSTACK CANONICAL EN UBUNTU')
