@@ -49,7 +49,6 @@ def installation(name, command):
                         print("")
                         print("")
                         print("")
-
                     installation(name, command)
                 elif(answer == 'N'):
                     break

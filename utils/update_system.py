@@ -19,7 +19,7 @@ def confirm1():
             print("Actualizando paquetes del sistema...")
             try:
                 command = 'sudo apt-get update '
-                output = subprocess.check_output(
+                output = subprocess.run(
                     command, stderr=subprocess.STDOUT, shell=True, timeout=3,
                     universal_newlines=True)
             except subprocess.CalledProcessError as exc:
