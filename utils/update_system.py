@@ -23,6 +23,7 @@ def confirm1():
                 process = subprocess.run(
                     command, stderr=subprocess.STDOUT, shell=True, timeout=50,
                     universal_newlines=True)
+                process.terminate()
             except subprocess.CalledProcessError as exc:
                 """ En caso de error """
                 print("Error, Status : FAIL", exc.returncode, exc.output)

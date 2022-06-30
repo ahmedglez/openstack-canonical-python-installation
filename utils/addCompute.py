@@ -19,6 +19,7 @@ def addCompute():
             output = subprocess.check_output(
                 'sudo microstack add-compute', stderr=subprocess.STDOUT, shell=True, timeout=30,
                 universal_newlines=True)
+            
         except subprocess.CalledProcessError as exc:
             """ En caso de error """
             print("Error, Status : FAIL", exc.returncode, exc.output)
