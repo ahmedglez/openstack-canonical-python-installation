@@ -1,6 +1,7 @@
 
 
 from cProfile import run
+from signal import SIGTERM
 import subprocess
 import time
 
@@ -40,7 +41,7 @@ def confirm1():
             except subprocess.TimeoutExpired as exc:
                 
                 print("Poll2", process.poll())
-                process.terminate()
+                process.send_signal(SIGTERM)
                 process.kill()
                 print("Poll2", process.poll())
                 
