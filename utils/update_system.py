@@ -19,10 +19,10 @@ def confirm1():
             print("Actualizando paquetes del sistema...")
             try:
                 command = 'sudo apt-get update '
-                output = subprocess.check_output(
-                    command, stderr=subprocess.STDOUT, shell=True, timeout=3,
-                    universal_newlines=True)
-                print(output)
+                subprocess.run(
+                command, stderr=subprocess.STDOUT, shell=True, timeout=5,
+                universal_newlines=True)
+                print(subprocess.CompletedProcess)
             except subprocess.CalledProcessError as exc:
                 """ En caso de error """
                 print("Error, Status : FAIL", exc.returncode, exc.output)
@@ -47,6 +47,7 @@ def confirm1():
                     answer = input().capitalize()
                     if(answer == 'S'):
                         print("Actualizando paquetes del sistema... ")
+                        print(output)
                     elif(answer == 'N'):
                         break
                     else:
