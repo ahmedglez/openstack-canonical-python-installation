@@ -14,7 +14,7 @@ def microstack_init():
         try:
             command = 'sudo microstack init --auto --control '
             output = subprocess.check_output(
-                command, stderr=subprocess.STDOUT, shell=True, timeout=3,
+                command, stderr=subprocess.STDOUT, shell=True, timeout=50,
                 universal_newlines=True)
         except subprocess.CalledProcessError as exc:
             """ En caso de error """
@@ -32,18 +32,20 @@ def microstack_init():
                 else:
                     print('Opcion no valida')
         except subprocess.TimeoutExpired as exc:
-            print("La ejecucion de este comando está demorado demasiado tiempo")
-            print("Desea continuar con la ejecucion?")
-            print('S-Si    -   N-No')
-            answer = 0
-            while(answer != 'S' and answer != 'N'):
-                answer = input().capitalize()
-                if(answer == 'S'):
-                    print("Inicilizando nodo controlador... ")
-                elif(answer == 'N'):
-                    break
-                else:
-                    print('Opcion no valida')
+                print("")
+                print("La ejecucion de este comando está demorado demasiado tiempo")
+                print("Desea reintentar este paso?")
+                print('S-Si    -   N-No')
+                answer = 0
+                while(answer != 'S' and answer != 'N'):
+                    answer = input().capitalize()
+                    if(answer == 'S'):
+                        microstack_init()
+
+                    elif(answer == 'N'):
+                        print(subprocess.check_output())
+                    else:
+                        print('Opcion no valida')
 
     elif(answer == 'N'):
         """ En caso de No """

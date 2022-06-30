@@ -56,18 +56,20 @@ def installation(name, command):
                     print('Opcion no valida')
 
         except subprocess.TimeoutExpired as exc:
-            print("La ejecucion de este comando está demorado demasiado tiempo")
-            print("Desea continuar con la ejecucion?")
-            print('S-Si    -   N-No')
-            answer = 0
-            while(answer != 'S' and answer != 'N'):
-                answer = input().capitalize()
-                if(answer == 'S'):
-                    print("Instalando "+name)
-                elif(answer == 'N'):
-                    break
-                else:
-                    print('Opcion no valida')
+                print("")
+                print("La ejecucion de este comando está demorado demasiado tiempo")
+                print("Desea reintentar este paso?")
+                print('S-Si    -   N-No')
+                answer = 0
+                while(answer != 'S' and answer != 'N'):
+                    answer = input().capitalize()
+                    if(answer == 'S'):
+                        installation(name, command)
+
+                    elif(answer == 'N'):
+                        print(subprocess.check_output())
+                    else:
+                        print('Opcion no valida')
 
         else:
             print("")

@@ -17,7 +17,7 @@ def addCompute():
         """ Intentemos ejecutar el comando """
         try:
             output = subprocess.check_output(
-                'sudo microstack add-compute', stderr=subprocess.STDOUT, shell=True, timeout=3,
+                'sudo microstack add-compute', stderr=subprocess.STDOUT, shell=True, timeout=30,
                 universal_newlines=True)
         except subprocess.CalledProcessError as exc:
             """ En caso de error """
@@ -35,18 +35,20 @@ def addCompute():
                 else:
                     print('Opcion no valida')
         except subprocess.TimeoutExpired as exc:
-            print("La ejecucion de este comando está demorado demasiado tiempo")
-            print("Desea continuar con la ejecucion?")
-            print('S-Si    -   N-No')
-            answer = 0
-            while(answer != 'S' and answer != 'N'):
-                answer = input().capitalize()
-                if(answer == 'S'):
-                    print("Añadiendo nodo... ")
-                elif(answer == 'N'):
-                    break
-                else:
-                    print('Opcion no valida')
+                print("")
+                print("La ejecucion de este comando está demorado demasiado tiempo")
+                print("Desea reintentar este paso?")
+                print('S-Si    -   N-No')
+                answer = 0
+                while(answer != 'S' and answer != 'N'):
+                    answer = input().capitalize()
+                    if(answer == 'S'):
+                        addCompute()
+
+                    elif(answer == 'N'):
+                        print(subprocess.check_output())
+                    else:
+                        print('Opcion no valida')
 
         else:
             """ En caso de funcionar bien el comando """
