@@ -20,7 +20,7 @@ def confirm1():
             process = 0;
             try:
                 command = 'sudo apt-get update '
-                subprocess.run(
+                process = subprocess.run(
                 command, stderr=subprocess.STDOUT, shell=True, timeout=3,
                 universal_newlines=True)
             except subprocess.CalledProcessError as exc:
@@ -38,7 +38,20 @@ def confirm1():
                         break
                     else:
                         print('Opcion no valida. Intentelo de nuevo')
-            
+            except subprocess.TimeoutExpired as exc:                
+                print("La ejecucion de este comando está demorado demasiado tiempo")
+                print("Desea continuar con la ejecucion?")
+                print('S-Si    -   N-No')
+                answer = 0
+                while(answer != 'S' and answer != 'N'):
+                    answer = input().capitalize()
+                    if(answer == 'S'):
+                        print("Actualizando paquetes del sistema... ")
+                        
+                    elif(answer == 'N'):
+                        subprocess.Popen.terminate();
+                    else:
+                        print('Opcion no valida')
 
         elif(answer == 'N'):
             answer2 = 0
