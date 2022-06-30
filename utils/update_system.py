@@ -46,6 +46,7 @@ def confirm1():
                     answer = input().capitalize()
                     if(answer == 'S'):
                         print("Actualizando paquetes del sistema... ")
+                        print(subprocess.STD_OUTPUT_HANDLE)
                     elif(answer == 'N'):
                         break
                     else:
