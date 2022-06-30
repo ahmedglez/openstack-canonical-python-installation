@@ -1,5 +1,6 @@
 
 
+from cProfile import run
 import subprocess
 import time
 
@@ -17,13 +18,11 @@ def confirm1():
         answer = input().capitalize()
         if(answer == 'S'):
             print("Actualizando paquetes del sistema...")
-            process = 0
             try:
                 command = 'sudo apt-get update '
-                process = subprocess.Popen(args=[command.split(' ')], stderr=subprocess.STDOUT, shell=True
-                                           )
-                
-            except subprocess.CalledProcessError as exc:
+                process = subprocess.Popen(args=[command.split(' ')], shell=True)                         
+                process.communicate(input=None, timeout=2)
+            except subprocess.CalledProcessError as exc:                
                 """ En caso de error """
                 print("Error, Status : FAIL", exc.returncode, exc.output)
                 print("")
@@ -39,6 +38,7 @@ def confirm1():
                     else:
                         print('Opcion no valida. Intentelo de nuevo')
             except subprocess.TimeoutExpired as exc:
+                process.terminate()
                 print("")
                 print("La ejecucion de este comando está demorado demasiado tiempo")
                 print("Desea reintentar este paso?")
