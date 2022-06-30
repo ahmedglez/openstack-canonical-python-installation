@@ -21,8 +21,8 @@ def confirm1():
             print("Actualizando paquetes del sistema...")
             try:
                 command = 'sudo apt-get update '
-                process = subprocess.Popen(args=[command], shell=True)                         
-                process.communicate(input=None, timeout=2)
+                subprocess.Popen(args=[command], shell=True)                         
+                subprocess.Popen.communicate(input=None, timeout=2)
             except subprocess.CalledProcessError as exc:                
                 """ En caso de error """
                 print("Error, Status : FAIL", exc.returncode, exc.output)
@@ -40,10 +40,11 @@ def confirm1():
                         print('Opcion no valida. Intentelo de nuevo')
             except subprocess.TimeoutExpired as exc:
                 
-                print("Poll", process.poll())
-                subprocess.Popen.terminate(process)
-                process.kill()
-                print("Poll2", process.poll())
+                print("Poll", subprocess.Popen.poll())
+                print(subprocess.Popen.returncode)
+                subprocess.Popen.terminate()
+                subprocess.Popen.kill()
+                print("Poll2", subprocess.Popen.poll())
                 
                 print("")
                 print("La ejecucion de este comando está demorado demasiado tiempo")
