@@ -48,7 +48,7 @@ def confirm1():
                     if(answer == 'S'):
                         print("Actualizando paquetes del sistema... ")
                     elif(answer == 'N'):
-                        break
+                        subprocess.Popen.terminate();
                     else:
                         print('Opcion no valida')
 
