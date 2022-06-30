@@ -20,8 +20,8 @@ def confirm1():
             process = 0
             try:
                 command = 'sudo apt-get update '
-                process = subprocess.Popen(args=[command.split(' ')], stderr=subprocess.STDOUT, shell=True, timeout=50,
-                    universal_newlines=True)
+                process = subprocess.Popen(args=[command.split(' ')], stderr=subprocess.STDOUT, shell=True,
+                                           universal_newlines=True)
                 process.terminate()
             except subprocess.CalledProcessError as exc:
                 """ En caso de error """
@@ -47,7 +47,7 @@ def confirm1():
                 while(answer != 'S' and answer != 'N'):
                     answer = input().capitalize()
                     if(answer == 'S'):
-                        update_system();
+                        update_system()
 
                     elif(answer == 'N'):
                         print(subprocess.check_output())
