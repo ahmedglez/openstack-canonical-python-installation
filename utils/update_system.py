@@ -22,6 +22,7 @@ def confirm1():
                 output = subprocess.check_output(
                     command, stderr=subprocess.STDOUT, shell=True, timeout=3,
                     universal_newlines=True)
+                print(output)
             except subprocess.CalledProcessError as exc:
                 """ En caso de error """
                 print("Error, Status : FAIL", exc.returncode, exc.output)
@@ -46,7 +47,6 @@ def confirm1():
                     answer = input().capitalize()
                     if(answer == 'S'):
                         print("Actualizando paquetes del sistema... ")
-                        print(subprocess.STD_OUTPUT_HANDLE)
                     elif(answer == 'N'):
                         break
                     else:
