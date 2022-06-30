@@ -49,7 +49,7 @@ def confirm1():
                         print("Actualizando paquetes del sistema... ")
                         
                     elif(answer == 'N'):
-                        subprocess.CalledProcessError
+                        process.terminate()
                     else:
                         print('Opcion no valida')
 
