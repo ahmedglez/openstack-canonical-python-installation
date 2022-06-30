@@ -38,10 +38,8 @@ def confirm1():
                     else:
                         print('Opcion no valida. Intentelo de nuevo')
             except subprocess.TimeoutExpired as exc:
-                process.poll()
-                process.kill()
-                process.terminate()
-                process.poll()
+                
+                print("Poll", process.poll())
                 print("")
                 print("La ejecucion de este comando está demorado demasiado tiempo")
                 print("Desea reintentar este paso?")
