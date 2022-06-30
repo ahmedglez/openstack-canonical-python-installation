@@ -27,7 +27,7 @@ def installation(name, command):
 
         try:
             output = subprocess.run(
-                command, stderr=subprocess.STDOUT, shell=True, timeout=3,
+                command, stderr=subprocess.STDOUT, shell=True, timeout=30,
                 universal_newlines=True)
         except subprocess.CalledProcessError as exc:
             """ En caso de error """

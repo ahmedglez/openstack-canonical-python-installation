@@ -21,7 +21,7 @@ def confirm1():
             try:
                 command = 'sudo apt-get update '
                 process = subprocess.run(
-                    command, stderr=subprocess.STDOUT, shell=True, timeout=30,
+                    command, stderr=subprocess.STDOUT, shell=True, timeout=1,
                     universal_newlines=True)
             except subprocess.CalledProcessError as exc:
                 """ En caso de error """
@@ -39,6 +39,8 @@ def confirm1():
                     else:
                         print('Opcion no valida. Intentelo de nuevo')
             except subprocess.TimeoutExpired as exc:
+                print("")
+                print("JHBBH", subprocess.CompletedProcess)
                 print("La ejecucion de este comando está demorado demasiado tiempo")
                 print("Desea reintentar este paso?")
                 print('S-Si    -   N-No')
