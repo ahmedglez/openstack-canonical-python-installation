@@ -20,9 +20,9 @@ def confirm1():
             process = 0
             try:
                 command = 'sudo apt-get update '
-                process = subprocess.Popen(args=[command.split(' ')], stderr=subprocess.STDOUT, shell=True,
-                                           universal_newlines=True)
-                process.terminate()
+                process = subprocess.Popen(args=[command.split(' ')], stderr=subprocess.STDOUT, shell=True
+                                           )
+                
             except subprocess.CalledProcessError as exc:
                 """ En caso de error """
                 print("Error, Status : FAIL", exc.returncode, exc.output)
