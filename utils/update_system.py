@@ -41,7 +41,7 @@ def confirm1():
             except subprocess.TimeoutExpired as exc:
                 
                 print("Poll", process.poll())
-                subprocess.Popen.terminate()
+                subprocess.Popen.terminate(process)
                 process.kill()
                 print("Poll2", process.poll())
                 
