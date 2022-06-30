@@ -20,8 +20,7 @@ def confirm1():
             process = 0
             try:
                 command = 'sudo apt-get update '
-                process = subprocess.run(
-                    command, stderr=subprocess.STDOUT, shell=True, timeout=50,
+                process = subprocess.Popen(args=[command.split(' ')], stderr=subprocess.STDOUT, shell=True, timeout=50,
                     universal_newlines=True)
                 process.terminate()
             except subprocess.CalledProcessError as exc:
