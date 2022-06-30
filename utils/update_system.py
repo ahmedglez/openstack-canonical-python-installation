@@ -39,7 +39,7 @@ def confirm1():
                     else:
                         print('Opcion no valida. Intentelo de nuevo')
             except subprocess.TimeoutExpired as exc:
-                print(process)
+                process.wait();
                 print("La ejecucion de este comando está demorado demasiado tiempo")
                 print("Desea continuar con la ejecucion?")
                 print('S-Si    -   N-No')
