@@ -64,6 +64,7 @@ def installation(name, command):
                 answer = input().capitalize()
                 if(answer == 'S'):
                     print("Instalando "+name)
+                    print(output)
                 elif(answer == 'N'):
                     break
                 else:
