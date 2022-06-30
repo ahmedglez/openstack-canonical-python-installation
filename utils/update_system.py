@@ -40,8 +40,8 @@ def confirm1():
                         print('Opcion no valida. Intentelo de nuevo')
             except subprocess.TimeoutExpired as exc:
                 
-                print("Poll2", process.poll())
-                process.send_signal(SIGTERM)
+                print("Poll", process.poll())
+                subprocess.Popen.terminate()
                 process.kill()
                 print("Poll2", process.poll())
                 
