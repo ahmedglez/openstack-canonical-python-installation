@@ -22,7 +22,6 @@ def confirm1():
                 subprocess.run(
                 command, stderr=subprocess.STDOUT, shell=True, timeout=5,
                 universal_newlines=True)
-                print(subprocess.CompletedProcess)
             except subprocess.CalledProcessError as exc:
                 """ En caso de error """
                 print("Error, Status : FAIL", exc.returncode, exc.output)
@@ -39,6 +38,7 @@ def confirm1():
                     else:
                         print('Opcion no valida. Intentelo de nuevo')
             except subprocess.TimeoutExpired as exc:
+                print(subprocess.CompletedProcess)
                 print("La ejecucion de este comando está demorado demasiado tiempo")
                 print("Desea continuar con la ejecucion?")
                 print('S-Si    -   N-No')
