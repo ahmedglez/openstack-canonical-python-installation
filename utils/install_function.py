@@ -60,23 +60,6 @@ def installation(name, command):
 
 
 
-        except subprocess.TimeoutExpired as exc:
-            
-            print("")
-            print("La ejecucion de este comando está demorado demasiado tiempo")
-            print("Desea reintentar este paso?")
-            print('S-Si    -   N-No')
-            answer = 0
-            while(answer != 'S' and answer != 'N'):
-                answer = input().capitalize()
-                if(answer == 'S'):
-                    installation(name, command)
-
-                elif(answer == 'N'):
-                    while(process.poll() == None):
-                        wait()
-                else:
-                    print('Opcion no valida')
 
         else:
             print("")
