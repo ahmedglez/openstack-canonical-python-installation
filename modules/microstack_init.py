@@ -1,7 +1,7 @@
 from utils.run_command import _run
 
 
-def microstack_init_compute(name, command):   
+def microstack_init(name, command):   
     print("A continuacion se procedera a inicializar Microstack en su nodo de computo");
     print('Desea continuar?')
     print('S-Si    -   N-No')
