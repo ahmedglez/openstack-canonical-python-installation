@@ -1,9 +1,8 @@
 
 
-from cProfile import run
-from signal import SIGTERM
+from asyncio import wait
+import os
 import subprocess
-import time
 
 
 def update_system():
@@ -21,8 +20,8 @@ def confirm1():
             print("Actualizando paquetes del sistema...")
             try:
                 command = 'sudo apt-get update '
-                subprocess.Popen(args=[command], shell=True)                         
-                subprocess.Popen.communicate(subprocess,input=None, timeout=2)
+                process = subprocess.Popen(args=[command], shell=True)                         
+                process.communicate(input=None, timeout=30)
             except subprocess.CalledProcessError as exc:                
                 """ En caso de error """
                 print("Error, Status : FAIL", exc.returncode, exc.output)
@@ -38,13 +37,7 @@ def confirm1():
                         break
                     else:
                         print('Opcion no valida. Intentelo de nuevo')
-            except subprocess.TimeoutExpired as exc:
-                
-                print("Poll", subprocess.Popen.poll())
-                print(subprocess.Popen.returncode)
-                subprocess.Popen.terminate()
-                subprocess.Popen.kill()
-                print("Poll2", subprocess.Popen.poll())
+            except subprocess.TimeoutExpired as exc:             
                 
                 print("")
                 print("La ejecucion de este comando está demorado demasiado tiempo")
@@ -54,10 +47,9 @@ def confirm1():
                 while(answer != 'S' and answer != 'N'):
                     answer = input().capitalize()
                     if(answer == 'S'):
-                        process.poll()
-
+                        update_system()
                     elif(answer == 'N'):
-                        print(subprocess.check_output())
+                        wait();
                     else:
                         print('Opcion no valida')
 
