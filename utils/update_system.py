@@ -4,6 +4,7 @@ from cProfile import run
 from signal import SIGTERM
 import subprocess
 import time
+from typing_extensions import Self
 
 
 def update_system():
@@ -22,7 +23,7 @@ def confirm1():
             try:
                 command = 'sudo apt-get update '
                 subprocess.Popen(args=[command], shell=True)                         
-                subprocess.Popen.communicate(input=None, timeout=2)
+                subprocess.Popen.communicate(self=Self,input=None, timeout=2)
             except subprocess.CalledProcessError as exc:                
                 """ En caso de error """
                 print("Error, Status : FAIL", exc.returncode, exc.output)
