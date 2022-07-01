@@ -4,8 +4,8 @@ import sys
 def _run(command, env=None, check=False, timeout=None):
     with subprocess.Popen(args=command, env=env, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True) as process:
         for line in iter(process.stdout.readline,''):
-            if(line.rstrip()!=''):
-                print (line.rstrip())
+            if(line!=''):
+                print (line)
         try:
             stdout, stderr = process.communicate(input, timeout=timeout)
         except subprocess.TimeoutExpired:
