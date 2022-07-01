@@ -3,9 +3,12 @@ import sys
 
 def _run(command, env=None, check=False, timeout=None):
     with subprocess.Popen(args=command, env=env, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True) as process:
-        for line in iter(process.stdout.readline,''):
-            if(line!=''):
-                print (line)
+        while True:
+            line = process.stdout.readline()
+            if not line:
+                 break
+            print ("test:", line.rstrip())
+        
         try:
             stdout, stderr = process.communicate(input, timeout=timeout)
         except subprocess.TimeoutExpired:
