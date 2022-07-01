@@ -20,7 +20,7 @@ def confirm1():
             print("Actualizando paquetes del sistema...")
             
             command = 'sudo apt-get update '
-            _run(command)
+            _run(command=command)
 
         elif(answer == 'N'):
             answer2 = 0

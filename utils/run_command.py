@@ -1,10 +1,8 @@
 import subprocess
 import sys
 
-def _run(args, env=None, check=False, timeout=None):
-    encoded_args = [a.encode('utf-8') for a in args] if sys.platform != 'win32' else args
-    print(encoded_args)
-    with subprocess.Popen(args=encoded_args, env=env, stdout=subprocess.PIPE, stderr=subprocess.PIPE) as process:
+def _run(command, env=None, check=False, timeout=None):
+    with subprocess.Popen(args=command, env=env, stdout=subprocess.PIPE, stderr=subprocess.PIPE) as process:
         try:
             stdout, stderr = process.communicate(input, timeout=timeout)
         except subprocess.TimeoutExpired:
