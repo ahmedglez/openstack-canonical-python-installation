@@ -5,7 +5,9 @@ def _run(command, env=None, check=False, timeout=None):
     with subprocess.Popen(args=command, env=env, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True) as process:
         try:
             stdout, stderr = process.communicate(input, timeout=timeout)
-            print(process.stdout.readline());
+            for line in process.stdout:
+                #the real code does filtering here
+                print ("test:", line.rstrip())
 
         except subprocess.TimeoutExpired:
             process.kill()
