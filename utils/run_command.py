@@ -1,8 +1,9 @@
 import subprocess
 import sys
 
-def _run(*args, env=None, check=False, timeout=None):
+def _run(args, env=None, check=False, timeout=None):
     encoded_args = [a.encode('utf-8') for a in args] if sys.platform != 'win32' else args
+    print(encoded_args)
     with subprocess.Popen(encoded_args, env=env, stdout=subprocess.PIPE, stderr=subprocess.PIPE) as process:
         try:
             stdout, stderr = process.communicate(input, timeout=timeout)
