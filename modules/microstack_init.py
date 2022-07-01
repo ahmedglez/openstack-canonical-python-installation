@@ -15,26 +15,8 @@ def microstack_init(name, command):
             command = command + " "+ clave
 
         print('Inicializacndo Openstack en su nodo '+name) 
-        ex_result = _run(command=command)
-        if(ex_result == 1):
-            """ En caso de error """
-            print("Error, Status : FAIL", ex_result.returncode, ex_result.output)
-            print("")
-            print("Desea reintentar este paso nuevamente?")
-            print('S-Si    -   N-No')
-            answer = 0
-            while(answer != 'S' and answer != 'N'):
-                answer = input().capitalize()
-                if(answer == 'S'):
-                    microstack_init_compute()
-                elif(answer=='N'):
-                    break
-                else:
-                    print('Opcion no valida')
-
-        else:
-            print("")
-            print("Microstack inicializado correctamente en su nodo "+name)
+        _run(command=command)
+       
 
     
 
