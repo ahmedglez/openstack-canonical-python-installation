@@ -1,8 +1,8 @@
-from utils.install_function import installation
-from utils.update_system import update_system
-from utils.microstack_init import microstack_init
-from utils.addCompute import addCompute
-from utils.microstack_init_compute import microstack_init_compute
+from modules.install_function import installation
+from modules.update_system import update_system
+from modules.microstack_init import microstack_init
+from modules.addCompute import addCompute
+from modules.microstack_init import microstack_init_compute
 import os
 
 
@@ -43,6 +43,6 @@ print("")
 
 """ INICIALIZAR MICROSTACK """
 print('***Paso#5 - Inicializacion de nodo computo de Openstack*** ')
-microstack_init_compute();
+microstack_init('computo', 'sudo microstack init --auto --compute --join' );
 print("")
 

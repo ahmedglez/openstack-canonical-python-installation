@@ -1,16 +1,7 @@
 from multiprocessing.connection import wait
-import subprocess
+from utils.run_command import _run
 import os
 
-""" import subprocess
-try:
-    output = subprocess.check_output(
-        cmnd, stderr=subprocess.STDOUT, shell=True, timeout=3,
-        universal_newlines=True)
-except subprocess.CalledProcessError as exc:
-    print("Status : FAIL", exc.returncode, exc.output)
-else:
-    print("Output: \n{}\n".format(output)) """
 
 
 def installation(name, command):
@@ -23,18 +14,13 @@ def installation(name, command):
 
     if(answer == 'S'):
         """ En caso de elegir Si """
-
         print("Instalando " + name + " en su sistema operativo ...")
-
-        try:
-            process = subprocess.Popen(args=[command], shell=True)                         
-            process.communicate(input=None, timeout=3)
-
-
-
-        except subprocess.CalledProcessError as exc:
+        ex_result = _run(command=command)
+        
+        if(ex_result.check_returncode == 1):
             """ En caso de error """
-            print("Error, Status : FAIL", exc.returncode, exc.output)
+            print("Error, Status : FAIL", ex_result.returncode, ex_result.output)
+
             print("")
             print("Desea reintentar este paso nuevamente?")
             print('S-Si    -   N-No')
@@ -57,8 +43,7 @@ def installation(name, command):
                     break
                 else:
                     print('Opcion no valida')
-
-
+           
 
 
         else:

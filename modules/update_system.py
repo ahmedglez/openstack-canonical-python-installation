@@ -2,7 +2,6 @@
 
 from asyncio import wait
 from utils.run_command import _run
-import subprocess
 
 
 def update_system():
@@ -17,8 +16,7 @@ def confirm1():
     while(answer != 'S' and answer != 'N'):
         answer = input().capitalize()
         if(answer == 'S'):
-            print("Actualizando paquetes del sistema...")
-            
+            print("Actualizando paquetes del sistema...")            
             command = 'sudo apt-get update '
             _run(command=command)
 

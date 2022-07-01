@@ -43,7 +43,7 @@ print("")
 
 """ INICIALIZAR MICROSTACK """
 print('***Paso#5 - Inicializacion de nodo control de Openstack*** ')
-microstack_init()
+microstack_init('control', 'sudo microstack init --auto --control ')
 print("")
 
 

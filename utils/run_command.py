@@ -8,6 +8,7 @@ def _run(command, env=None, check=False, timeout=None):
             if not line:
                  break
             print ("test:", line.rstrip())
+            
         
         try:
             stdout, stderr = process.communicate(input, timeout=timeout)
