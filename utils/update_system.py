@@ -1,7 +1,6 @@
 
 
 from asyncio import wait
-from cProfile import run
 from run_command import _run
 import subprocess
 
@@ -21,7 +20,7 @@ def confirm1():
             print("Actualizando paquetes del sistema...")
             
             command = 'sudo apt-get update '
-            run(command)
+            _run(command)
 
         elif(answer == 'N'):
             answer2 = 0
