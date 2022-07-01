@@ -5,7 +5,7 @@ def _run(command, env=None, check=False, timeout=None):
     with subprocess.Popen(args=command, env=env, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True) as process:
         try:
             stdout, stderr = process.communicate(input, timeout=timeout)
-            print(process.stdout.readlines());
+            print(process.stdout.readline());
 
         except subprocess.TimeoutExpired:
             process.kill()
