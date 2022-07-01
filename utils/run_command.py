@@ -3,12 +3,10 @@ import sys
 
 def _run(command, env=None, check=False, timeout=None):
     with subprocess.Popen(args=command, env=env, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True) as process:
+        for line in iter(process.stdout.readline,''):
+            print (line.rstrip())
         try:
             stdout, stderr = process.communicate(input, timeout=timeout)
-            for line in process.stdout:
-                #the real code does filtering here
-                print ("test:", line.rstrip())
-
         except subprocess.TimeoutExpired:
             process.kill()
             stdout, stderr = process.communicate()
