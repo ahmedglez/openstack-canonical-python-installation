@@ -1,3 +1,4 @@
+from multiprocessing.connection import wait
 import subprocess
 import os
 
@@ -26,9 +27,11 @@ def installation(name, command):
         print("Instalando " + name + " en su sistema operativo ...")
 
         try:
-            output = subprocess.run(
-                command, stderr=subprocess.STDOUT, shell=True, timeout=30,
-                universal_newlines=True)
+            process = subprocess.Popen(args=[command], shell=True)                         
+            process.communicate(input=None, timeout=3)
+
+
+
         except subprocess.CalledProcessError as exc:
             """ En caso de error """
             print("Error, Status : FAIL", exc.returncode, exc.output)
@@ -55,21 +58,25 @@ def installation(name, command):
                 else:
                     print('Opcion no valida')
 
-        except subprocess.TimeoutExpired as exc:
-                print("")
-                print("La ejecucion de este comando está demorado demasiado tiempo")
-                print("Desea reintentar este paso?")
-                print('S-Si    -   N-No')
-                answer = 0
-                while(answer != 'S' and answer != 'N'):
-                    answer = input().capitalize()
-                    if(answer == 'S'):
-                        installation(name, command)
 
-                    elif(answer == 'N'):
-                        print(subprocess.check_output())
-                    else:
-                        print('Opcion no valida')
+
+        except subprocess.TimeoutExpired as exc:
+            
+            print("")
+            print("La ejecucion de este comando está demorado demasiado tiempo")
+            print("Desea reintentar este paso?")
+            print('S-Si    -   N-No')
+            answer = 0
+            while(answer != 'S' and answer != 'N'):
+                answer = input().capitalize()
+                if(answer == 'S'):
+                    installation(name, command)
+
+                elif(answer == 'N'):
+                    while(process.poll() == None):
+                        wait()
+                else:
+                    print('Opcion no valida')
 
         else:
             print("")
