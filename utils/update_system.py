@@ -1,7 +1,8 @@
 
 
 from asyncio import wait
-import os
+from cProfile import run
+from run_command import _run
 import subprocess
 
 
@@ -18,26 +19,9 @@ def confirm1():
         answer = input().capitalize()
         if(answer == 'S'):
             print("Actualizando paquetes del sistema...")
-            try:
-                command = 'sudo apt-get update '
-                process = subprocess.Popen(args=[command], shell=True)                         
-                process.communicate(input=None, timeout=30)
-            except subprocess.CalledProcessError as exc:                
-                """ En caso de error """
-                print("Error, Status : FAIL", exc.returncode, exc.output)
-                print("")
-                print("Desea reintentar este paso nuevamente?")
-                print('S-Si    -   N-No')
-                answer = 0
-                while(answer != 'S' and answer != 'N'):
-                    answer = input().capitalize()
-                    if(answer == 'S'):
-                        update_system()
-                    elif(answer == 'N'):
-                        break
-                    else:
-                        print('Opcion no valida. Intentelo de nuevo')
             
+            command = 'sudo apt-get update '
+            run(command)
 
         elif(answer == 'N'):
             answer2 = 0
