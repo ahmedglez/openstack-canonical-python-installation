@@ -2,7 +2,7 @@ import subprocess
 import sys
 
 def _run(command, env=None, check=False, timeout=None):
-    with subprocess.Popen(args=command, env=env, stdout=subprocess.PIPE, stderr=subprocess.PIPE) as process:
+    with subprocess.Popen(args=command, env=env, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True) as process:
         try:
             stdout, stderr = process.communicate(input, timeout=timeout)
         except subprocess.TimeoutExpired:
