@@ -1,7 +1,7 @@
-from utils.install_function import installation
-from utils.update_system import update_system
-from utils.microstack_init import microstack_init
-from utils.addCompute import addCompute
+from modules.install_function import installation
+from modules.update_system import update_system
+from modules.microstack_init import microstack_init
+from modules.addCompute import addCompute
 import os
 
 
